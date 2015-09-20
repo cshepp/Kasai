@@ -14,12 +14,12 @@ Match against lambda expressions
 
 ```TypeScript
 
-let a = {a: 1, b: 2, c: 3}
+let a = 5
 
 match(a, [
-    [(x) => typeof x === 'object', (x) => 'An Object!],
-    [(x) => typeof x === 'boolean', (x) => 'A Boolean!'],
-    [_, (x) => 'Something else']
+    [(x) => x > 3, 'X is greater than 3'],
+    [(x) => x < 2, 'X is less then 2'],
+    [_, 'X is something else']
 ])
 ```
 
@@ -46,7 +46,22 @@ match(a, [
 ])
 ```
 
+Match against boolean literals
+```TypeScript
+
+let a = false
+
+match(a, [
+    [true, (x) => "TRUTH"],
+    [false, (x) => "LIES"]
+])
+```
+
 ### Other helpful shortcuts
+
+```TypeScript
+import {instanceOf, typeOf} from 'kasai'
+```
 
 Match against basic types:
 ```TypeScript
@@ -68,16 +83,5 @@ match(a, [
     [instanceOf(Thing), (x) => x.doThing()],
     [instanceOf(Stuff), (x) => x.doStuff()],
     [_, (x) => false]
-])
-```
-
-Match against boolean literals
-```TypeScript
-
-let a = false
-
-match(a, [
-    [true, (x) => "TRUTH"],
-    [false, (x) => "LIES"]
 ])
 ```
