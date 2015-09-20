@@ -1,15 +1,18 @@
 
-export var _ = (x) => true
+export var compareArrays = (value: any, pattern: any): boolean => {
+    var correct = value.map((x, i) => {
+        return isMatch(x, pattern[i]) ? 1 : 0
+    })
 
-var compareArrays = (value: any, pattern: any): boolean => {
+    var numCorrect = correct.reduce((p, c) => p + c, 0);
+    return numCorrect === value.length;
+}
+
+export var compareObjects = (value: any, pattern: any): boolean => {
     return true
 }
 
-var compareObjects = (value: any, pattern: any): boolean => {
-    return true
-}
-
-var getComparator = (pattern: any): Function => {
+export var getComparator = (pattern: any): Function => {
 
     if(typeof pattern === 'function') return pattern
     if(typeof pattern === 'boolean') return (x) => x === pattern
