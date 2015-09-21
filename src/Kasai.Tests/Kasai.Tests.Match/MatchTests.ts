@@ -4,11 +4,14 @@ import {match} from '../../Kasai.Match/Match'
 
 export class MatchTests extends tsUnit.TestClass {
 
-    Test_ShouldPass_WhenExecuted(){
-        this.areIdentical(1, 1)
+    match_ShouldReturnTrue_InThisCase() { 
+        var actual = match(1, [
+            [1, true],
+            [0, false]
+        ])
+        
+        this.isFalse(actual)
     }
-
-    Test_ShouldFail_WhenExecuted(){
-        this.areIdentical(1, 2)
-    }
+    
+    
 }
