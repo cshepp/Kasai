@@ -5,16 +5,18 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = new __();
 };
 var tsUnit = require('../../../node_modules/tsunit.external/tsUnit');
+var Match_1 = require('../../Kasai.Match/Match');
 var MatchTests = (function (_super) {
     __extends(MatchTests, _super);
     function MatchTests() {
         _super.apply(this, arguments);
     }
-    MatchTests.prototype.Test_ShouldPass_WhenExecuted = function () {
-        this.areIdentical(1, 1);
-    };
-    MatchTests.prototype.Test_ShouldFail_WhenExecuted = function () {
-        this.areIdentical(1, 2);
+    MatchTests.prototype.match_ShouldReturnTrue_InThisCase = function () {
+        var actual = Match_1.match(1, [
+            [1, true],
+            [0, false]
+        ]);
+        this.isFalse(actual);
     };
     return MatchTests;
 })(tsUnit.TestClass);
