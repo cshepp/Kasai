@@ -25,5 +25,5 @@ gulp.task('clean', function (callback) {
 });
 
 gulp.task('default', function (callback) {
-	runSequence('clean', 'compile', callback);
+	runSequence('compile', callback);
 });
