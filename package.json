@@ -2,7 +2,18 @@
 	"name": "Kasai",
 	"description": "A pattern matching library",
 	"version": "0.0.1",
-	"author": "Cody Shepp <me@codyshepp.com>",
+	"author": {
+		"name": "Cody Shepp",
+		"email": "me@codyshepp.com",
+		"url": "http://codyshepp.com"
+	},
+	"keywords": ["pattern matching", "pattern", "match"],
+	"homepage": "https://github.com/cshepp/kasai",
+	"license": "LGPL-3.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cshepp/kasai.git"
+	},
 	"readme": "readme.md",
 	"main": "target/index.js",
 	"typings": "target/index",
