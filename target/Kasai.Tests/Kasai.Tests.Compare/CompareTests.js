@@ -15,67 +15,86 @@ var CompareTests = (function (_super) {
      * Tests for compareArrays
      */
     CompareTests.prototype.compareArrays_ShouldReturnTrue_WhenGivenArraysThatAreEqual = function () {
-        this.isTrue(Compare_1.compareArrays([0, 1], [0, 1]));
+        var actual = Compare_1.compareArrays([0, 1], [0, 1]);
+        this.isTrue(typeof actual === 'boolean' && actual === true);
     };
     CompareTests.prototype.compareArrays_ShouldReturnFalse_WhenGivenArraysThatAreNotEqual = function () {
-        this.isFalse(Compare_1.compareArrays([0, 1], ["a", "b"]));
+        var actual = Compare_1.compareArrays([0, 1], ["a", "b"]);
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     CompareTests.prototype.compareArrays_ShouldReturnFalse_WhenValueIsShorterThanPattern = function () {
-        this.isFalse(Compare_1.compareArrays([0], [0, 1]));
+        var actual = Compare_1.compareArrays([0], [0, 1]);
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     CompareTests.prototype.compareArrays_ShouldReturnFalse_WhenArraysAreNotTheSameLength = function () {
-        this.isFalse(Compare_1.compareArrays([0, 1, 2], [0, 1]));
+        var actual = Compare_1.compareArrays([0, 1, 2], [0, 1]);
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     CompareTests.prototype.compareArrays_ShouldReturnFalse_WhenElementsAreSwitched = function () {
-        this.isFalse(Compare_1.compareArrays([0, 1], [1, 0]));
+        var actual = Compare_1.compareArrays([0, 1], [1, 0]);
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     /**
      * Tests for compareObjects
     */
     CompareTests.prototype.compareObjects_ShouldReturnFalse_WhenValueDoesntIncludeKeyFromPattern = function () {
-        this.isFalse(Compare_1.compareObjects({ a: 1, c: 3 }, { a: 1, b: 2 }));
+        var actual = Compare_1.compareObjects({ a: 1, c: 3 }, { a: 1, b: 2 });
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     CompareTests.prototype.compareObjects_ShouldReturnFalse_WhenValuesAtAKeyAreDifferent = function () {
-        this.isFalse(Compare_1.compareObjects({ a: 1 }, { a: 2 }));
+        var actual = Compare_1.compareObjects({ a: 1 }, { a: 2 });
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     CompareTests.prototype.compareObject_ShouldReturnTrue_WhenObjectsAreEqual = function () {
-        this.isTrue(Compare_1.compareObjects({ a: 1, b: 2 }, { a: 1, b: 2 }));
+        var actual = Compare_1.compareObjects({ a: 1, b: 2 }, { a: 1, b: 2 });
+        this.isTrue(typeof actual === 'boolean' && actual === true);
     };
     CompareTests.prototype.compareObject_ShouldReturnTrue_WhenObjectsAreEqualAreKeysAreOutOfOrder = function () {
-        this.isTrue(Compare_1.compareObjects({ a: 1, b: 2 }, { b: 2, a: 1 }));
+        var actual = Compare_1.compareObjects({ a: 1, b: 2 }, { b: 2, a: 1 });
+        this.isTrue(typeof actual === 'boolean' && actual === true);
     };
     /**
      * Tests for isMatch
      */
     CompareTests.prototype.isMatch_ShouldReturnTrue_WhenPassedEqualArrays = function () {
-        this.isTrue(Compare_1.isMatch([1, 2], [1, 2]));
+        var actual = Compare_1.isMatch([1, 2], [1, 2]);
+        this.isTrue(typeof actual === 'boolean' && actual === true);
     };
     CompareTests.prototype.isMatch_ShouldReturnFalse_WhenPassedDifferingArrays = function () {
-        this.isFalse(Compare_1.isMatch([1, 0, 2], [2, 6]));
+        var actual = Compare_1.isMatch([1, 0, 2], [2, 6]);
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     CompareTests.prototype.isMatch_ShouldReturnTrue_WhenPassedEqualObjects = function () {
-        this.isTrue(Compare_1.isMatch({ a: 4, b: false }, { a: 4, b: false }));
+        var actual = Compare_1.isMatch({ a: 4, b: false }, { a: 4, b: false });
+        this.isTrue(typeof actual === 'boolean' && actual === true);
     };
     CompareTests.prototype.isMatch_ShouldReturnFalse_WhenPassedDifferingObjects = function () {
-        this.isFalse(Compare_1.isMatch({ a: 0 }, { x: 0 }));
+        var actual = Compare_1.isMatch({ a: 0 }, { x: 0 });
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     CompareTests.prototype.isMatch_ShouldReturnTrue_WhenPassedEqualStrings = function () {
-        this.isTrue(Compare_1.isMatch("finn", "finn"));
+        var actual = Compare_1.isMatch("finn", "finn");
+        this.isTrue(typeof actual === 'boolean' && actual === true);
     };
     CompareTests.prototype.isMatch_ShouldReturnFalse_WhenPassedDifferingStrings = function () {
-        this.isFalse(Compare_1.isMatch("jake", "princess bubblegum"));
+        var actual = Compare_1.isMatch("jake", "princess bubblegum");
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     CompareTests.prototype.isMatch_ShouldReturnTrue_WhenPassedEqualNumbers = function () {
-        this.isTrue(Compare_1.isMatch(8675309, 8675309));
+        var actual = Compare_1.isMatch(8675309, 8675309);
+        this.isTrue(typeof actual === 'boolean' && actual === true);
     };
     CompareTests.prototype.isMatch_ShouldReturnFalse_WhenPassedDifferingNumbers = function () {
-        this.isFalse(Compare_1.isMatch(0, 1234));
+        var actual = Compare_1.isMatch(0, 1234);
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     CompareTests.prototype.isMatch_ShouldReturnTrue_WhenPassedEqualBooleans = function () {
-        this.isTrue(Compare_1.isMatch(true, true));
+        var actual = Compare_1.isMatch(true, true);
+        this.isTrue(typeof actual === 'boolean' && actual === true);
     };
     CompareTests.prototype.isMatch_ShouldReturnFalse_WhenPassedDifferingBooleans = function () {
-        this.isFalse(Compare_1.isMatch(false, true));
+        var actual = Compare_1.isMatch(false, true);
+        this.isTrue(typeof actual === 'boolean' && actual === false);
     };
     return CompareTests;
 })(tsUnit.TestClass);

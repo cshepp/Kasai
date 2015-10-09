@@ -2,6 +2,7 @@
 import * as tsUnit from '../../../node_modules/tsunit.external/tsUnit'
 import {match} from '../../Kasai.Match/Match'
 import {_} from '../../Kasai.Compare/Helpers'
+import {$} from '../../Kasai.Compare/Capture'
 
 export class MatchTests extends tsUnit.TestClass {
 
@@ -55,36 +56,35 @@ export class MatchTests extends tsUnit.TestClass {
             [{ a: 1 }, 'one'],
             [_, 'two']
         ])
-        
+
         this.areIdentical('one', actual)
     }
-    
-    match_ShouldMatchFirstClause_WhenManyAreCorrect() { 
+
+    match_ShouldMatchFirstClause_WhenManyAreCorrect() {
         var actual = match('x', [
             ['x', 1],
             ['x', 2],
             ['x', 3]
         ])
-        
+
         this.areIdentical(1, actual)
     }
-    
-    match_ShouldMatchCorrectlyAgainstNestedObjects() { 
+
+    match_ShouldMatchCorrectlyAgainstNestedObjects() {
         var actual = match({ a: { b: 1 } }, [
             [{ a: { b: 1 } }, 'one'],
             [_, 'two']
         ])
-        
+
         this.areIdentical('one', actual)
     }
-    
-    match_ShouldMatchCorrectlyAgainstNestedArrays() { 
+
+    match_ShouldMatchCorrectlyAgainstNestedArrays() {
         var actual = match([[1, 2], [3, 4]], [
             [[[1, 2], [3, 4]], 'one'],
             [_, 'two']
         ])
-        
+
         this.areIdentical('one', actual)
     }
-
 }
