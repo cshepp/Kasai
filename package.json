@@ -13,5 +13,8 @@
 		"run-sequence": "1.1.3",
 		"merge2": "0.3.6",
 		"tsunit.external": "1.8.0"
+	},
+	"scripts": {
+		"test": "node target/Kasai.Tests/Tests.js"
 	}
 }
