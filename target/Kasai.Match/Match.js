@@ -12,10 +12,7 @@ exports.match = function (value, patterns) {
         var matchResult = Compare_1.isMatch(value, guard);
         if (Compare_1.positiveMatch(matchResult)) {
             if (matchResult instanceof Capture_1.Capture) {
-                var args = (typeof matchResult.value === 'object' && matchResult.value.splice !== undefined)
-                    ? matchResult.value
-                    : [matchResult.value];
-                return r.apply(null, args);
+                return r.apply(null, matchResult.value);
             }
             return r(value);
         }

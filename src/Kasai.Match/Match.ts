@@ -19,11 +19,7 @@ export var match = (value: any, patterns: any[]): any => {
         if (positiveMatch(matchResult)) {
             if (matchResult instanceof Capture) {
 
-                let args = (typeof matchResult.value === 'object' && matchResult.value.splice !== undefined)
-                    ? matchResult.value
-                    : [matchResult.value]
-
-                return r.apply(null, args)
+                return r.apply(null, matchResult.value)
             }
 
             return r(value)
