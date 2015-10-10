@@ -1,7 +1,11 @@
 import * as tsUnit from '../../../node_modules/tsunit.external/tsUnit';
 export declare class CaptureTests extends tsUnit.TestClass {
-    isMatch_ShouldReturnCapture_WhenPassed(): void;
-    test(): void;
-    test3(): void;
-    test4(): void;
+    compareArrays_ShouldReturnCapturedValue_WhenOnlyOneCapture(): void;
+    compareArrays_ShouldReturnCaptuedValuesInOrder_WhenMoreThanOneCapture(): void;
+    compareArrays_ShouldReturnCapturedValue_WhenArraysAreNested(): void;
+    compareArrays_ShouldReturnCapturedValuesInOrder_WhenArraysAreNested(): void;
+    compareObjects_ShouldReturnCapturedValue_WhenOnlyOneCapture(): void;
+    compareObjects_ShouldReturnCapturedValuesInOrder_WhenMoreThanOneCapture(): void;
+    compareObjects_ShouldReturnCapturedValue_WhenObjectsAreNested(): void;
+    compareObjects_ShouldReturnCapturedValuesInOrder_WhenObjectsAreNested(): void;
 }
