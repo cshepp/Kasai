@@ -13,7 +13,6 @@ export var match = (value: any, patterns: any[]): any => {
             r = (x) => result
         }
 
-        // if(isMatch(value, guard)) return r(value);
         var matchResult: MatchResult = isMatch(value, guard);
 
         if (positiveMatch(matchResult)) {
