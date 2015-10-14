@@ -2,6 +2,7 @@
 import * as tsUnit from '../../../node_modules/tsunit.external/tsUnit'
 import {match} from '../../Kasai.Match/Match'
 import {_} from '../../Kasai.Compare/Helpers'
+import {$} from '../../Kasai.Compare/Capture'
 
 export class MatchTests extends tsUnit.TestClass {
 
@@ -55,36 +56,77 @@ export class MatchTests extends tsUnit.TestClass {
             [{ a: 1 }, 'one'],
             [_, 'two']
         ])
-        
+
         this.areIdentical('one', actual)
     }
-    
-    match_ShouldMatchFirstClause_WhenManyAreCorrect() { 
+
+    match_ShouldMatchFirstClause_WhenManyAreCorrect() {
         var actual = match('x', [
             ['x', 1],
             ['x', 2],
             ['x', 3]
         ])
-        
+
         this.areIdentical(1, actual)
     }
-    
-    match_ShouldMatchCorrectlyAgainstNestedObjects() { 
+
+    match_ShouldMatchCorrectlyAgainstNestedObjects() {
         var actual = match({ a: { b: 1 } }, [
             [{ a: { b: 1 } }, 'one'],
             [_, 'two']
         ])
-        
+
         this.areIdentical('one', actual)
     }
-    
-    match_ShouldMatchCorrectlyAgainstNestedArrays() { 
+
+    match_ShouldMatchCorrectlyAgainstNestedArrays() {
         var actual = match([[1, 2], [3, 4]], [
             [[[1, 2], [3, 4]], 'one'],
             [_, 'two']
         ])
-        
+
         this.areIdentical('one', actual)
     }
 
+    match_ShouldApplyCapturedValues_InArrays() {
+
+        var user1 = ['John', 'Smith']
+
+        var actual = match(user1, [
+            [[$, $], (f, l) => f + " " + l],
+            [_, 'bad']
+        ])
+
+        this.areIdentical('John Smith', actual)
+    }
+
+    match_ShouldApplyCapturedValues_InObjects() {
+
+        var user1 = { first: 'John', last: 'Smith' }
+        var actual = match(user1, [
+            [{ first: $, last: $ }, (f, l) => f + ' ' + l],
+            [_, 'bad']
+        ])
+
+        this.areIdentical('John Smith', actual)
+    }
+
+    match_ShouldWork_InComplexNestedStructures() {
+
+        var x = {
+            a: {
+                b: {
+                    c: ['x', 'y', 'z']
+                }
+            },
+            t: ['j']
+        };
+
+        var actual = match(x, [
+            [{ a: { b: { c: [$, $, $] } }, t: [$] }, (x, y, z, j) => x+y+z+j ],
+            [_, 'bad']
+        ])
+        
+        this.areIdentical('xyzj', actual)
+    }
 }

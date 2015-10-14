@@ -9,4 +9,7 @@ export declare class MatchTests extends tsUnit.TestClass {
     match_ShouldMatchFirstClause_WhenManyAreCorrect(): void;
     match_ShouldMatchCorrectlyAgainstNestedObjects(): void;
     match_ShouldMatchCorrectlyAgainstNestedArrays(): void;
+    match_ShouldApplyCapturedValues_InArrays(): void;
+    match_ShouldApplyCapturedValues_InObjects(): void;
+    match_ShouldWork_InComplexNestedStructures(): void;
 }

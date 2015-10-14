@@ -7,6 +7,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var tsUnit = require('../../../node_modules/tsunit.external/tsUnit');
 var Match_1 = require('../../Kasai.Match/Match');
 var Helpers_1 = require('../../Kasai.Compare/Helpers');
+var Capture_1 = require('../../Kasai.Compare/Capture');
 var MatchTests = (function (_super) {
     __extends(MatchTests, _super);
     function MatchTests() {
@@ -75,6 +76,37 @@ var MatchTests = (function (_super) {
             [Helpers_1._, 'two']
         ]);
         this.areIdentical('one', actual);
+    };
+    MatchTests.prototype.match_ShouldApplyCapturedValues_InArrays = function () {
+        var user1 = ['John', 'Smith'];
+        var actual = Match_1.match(user1, [
+            [[Capture_1.$, Capture_1.$], function (f, l) { return f + " " + l; }],
+            [Helpers_1._, 'bad']
+        ]);
+        this.areIdentical('John Smith', actual);
+    };
+    MatchTests.prototype.match_ShouldApplyCapturedValues_InObjects = function () {
+        var user1 = { first: 'John', last: 'Smith' };
+        var actual = Match_1.match(user1, [
+            [{ first: Capture_1.$, last: Capture_1.$ }, function (f, l) { return f + ' ' + l; }],
+            [Helpers_1._, 'bad']
+        ]);
+        this.areIdentical('John Smith', actual);
+    };
+    MatchTests.prototype.match_ShouldWork_InComplexNestedStructures = function () {
+        var x = {
+            a: {
+                b: {
+                    c: ['x', 'y', 'z']
+                }
+            },
+            t: ['j']
+        };
+        var actual = Match_1.match(x, [
+            [{ a: { b: { c: [Capture_1.$, Capture_1.$, Capture_1.$] } }, t: [Capture_1.$] }, function (x, y, z, j) { return x + y + z + j; }],
+            [Helpers_1._, 'bad']
+        ]);
+        this.areIdentical('xyzj', actual);
     };
     return MatchTests;
 })(tsUnit.TestClass);

@@ -1,37 +1,36 @@
 {
-  "name": "kasai",
-  "description": "A pattern matching library",
-  "version": "0.0.2",
-  "author": {
-    "name": "Cody Shepp",
-    "email": "me@codyshepp.com",
-    "url": "http://codyshepp.com"
-  },
-  "keywords": [
-    "pattern matching",
-    "pattern",
-    "match"
-  ],
-  "homepage": "https://github.com/cshepp/kasai",
-  "license": "LGPL-3.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cshepp/kasai.git"
-  },
-  "readme": "readme.md",
-  "files": [
-    "readme.md",
-    "LICENSE",
-    "target/"
-  ],
-  "main": "target/index.js",
-  "typings": "target/index",
-  "devDependencies": {
-    "gulp": "3.9.0",
-    "gulp-typescript": "2.8.3",
-    "del": "2.0.2",
-    "run-sequence": "1.1.3",
-    "merge2": "0.3.6",
-    "tsunit.external": "1.8.0"
-  }
+	"name": "kasai",
+	"description": "A pattern matching library",
+	"version": "0.0.1",
+	"author": {
+		"name": "Cody Shepp",
+		"email": "me@codyshepp.com",
+		"url": "http://codyshepp.com"
+	},
+	"keywords": ["pattern matching", "pattern", "match"],
+	"homepage": "https://github.com/cshepp/kasai",
+	"license": "LGPL-3.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cshepp/kasai.git"
+	},
+	"readme": "# Kasai\n\n### _A pattern matching library for TypeScript (and JavaScript)_\n\nPattern matching allows for concise logic based on the value and _shape_ of data.\n\nKasai provides an intuitive interface for pattern matching in TypeScript and JavaScript.\n\n### Matching\n\nPattern matching is really great for inspecting complex data structures with ease.\n\nHow many times have you written code like this?\n\n```javascript\nlet shippingDestination = (user) => {\n    return user.hasOwnProperty('contactInfo')\n        && user.contactInfo.hasOwnProperty('address')\n        && user.contactInfo.address.hasOwnProperty('zip')\n        && user.contactInfo.address.zip.length === 5\n        ? 'domestic'\n        : 'foreign';\n}\n```\n\nYuck!\n\nWith Kasai, that mess becomes this:\n\n```javascript\n\nlet shippingDestination = (user) => {\n    return match(user, [\n        [{ contactInfo: { address: { zip: (z) => z.length === 5 } } }, 'domestic'],\n        [_, 'foreign']\n    ]);\n}\n```\n\nThe concise, declarative syntax makes this code easier to read and easier for others to understand.\n\nKasai has support for matching any combination of objects, arrays, and primitive types (including circular references).\n\n### Capturing\n\nKasai also allows you to capture values from within a data structure with `$`.\n\n```javascript\nlet users = [\n    { first: 'Thomas', middle: 'Alva', last: 'Edison' },\n    { first: 'Nikola', last: 'Tesla' }\n];\n\nlet getFullName = (user) => {\n    return match(user, [\n        [{first: $, middle: $, last: $}, (f, m, l) => f + ' ' + m + ' ' + l],\n        [{first: $, last: $}           , (f, l) => f + ' ' + l],\n        [_, 'unknown']\n    ]);\n}\n\nlet fullNames = users.map(getFullName);\n// >>  ['Thomas Alva Edison', 'Nikola Tesla']\n```\n\nFor more examples, see the `docs` folder.\n",
+	"files": [
+		"readme.md",
+		"LICENSE",
+		"target/"
+	],
+	"main": "target/index.js",
+	"typings": "target/index",
+	"devDependencies": {
+		"gulp": "3.9.0",
+		"gulp-typescript": "2.8.3",
+		"del": "2.0.2",
+		"run-sequence": "1.1.3",
+		"merge2": "0.3.6",
+		"tsunit.external": "1.8.0"
+	},
+	"scripts": {
+		"test": "node target/Kasai.Tests/Tests.js"
+	}
 }

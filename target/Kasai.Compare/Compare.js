@@ -1,10 +1,21 @@
+var Capture_1 = require('./Capture');
+exports.positiveMatch = function (r) {
+    return (r instanceof Capture_1.Capture) || r === true;
+};
 exports.compareArrays = function (value, pattern) {
     if (value.length !== pattern.length)
         return false;
     var correct = value.map(function (x, i) {
-        return exports.isMatch(x, pattern[i]) ? 1 : 0;
+        return exports.isMatch(x, pattern[i]);
     });
-    var numCorrect = correct.reduce(function (p, c) { return p + c; }, 0);
+    var numCorrect = correct.reduce(function (p, c) { return p + (exports.positiveMatch(c) ? 1 : 0); }, 0);
+    var captures = correct.reduce(function (p, c) { if (c instanceof Capture_1.Capture) {
+        p.push(c);
+    } return p; }, []);
+    if (numCorrect === value.length && captures.length > 0) {
+        //return new Capture(captures)
+        return new Capture_1.Capture(captures, true);
+    }
     return numCorrect === value.length;
 };
 exports.compareObjects = function (value, pattern) {
@@ -14,9 +25,16 @@ exports.compareObjects = function (value, pattern) {
     if (orphanKeys.length > 0)
         return false;
     var correct = patternKeys.map(function (k) {
-        return exports.isMatch(value[k], pattern[k]) ? 1 : 0;
+        return exports.isMatch(value[k], pattern[k]);
     });
-    var numCorrect = correct.reduce(function (p, c) { return p + c; }, 0);
+    var numCorrect = correct.reduce(function (p, c) { return p + (exports.positiveMatch(c) ? 1 : 0); }, 0);
+    var captures = correct.reduce(function (p, c) { if (c instanceof Capture_1.Capture) {
+        p.push(c);
+    } return p; }, []);
+    if (numCorrect === patternKeys.length && captures.length > 0) {
+        //return new Capture(captures)
+        return new Capture_1.Capture(captures, true);
+    }
     return numCorrect === patternKeys.length;
 };
 exports.getComparator = function (pattern) {
