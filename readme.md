@@ -63,4 +63,4 @@ let fullNames = users.map(getFullName);
 // >>  ['Thomas Alva Edison', 'Nikola Tesla']
 ```
 
-For more examples, see the `examples` folder.
+For more examples, see the `docs` folder.
