@@ -12,7 +12,7 @@ Pattern matching is really great for inspecting complex data structures with eas
 
 How many times have you written code like this?
 
-```TypeScript
+```javascript
 let shippingDestination = (user) => {
     return user.hasOwnProperty('contactInfo')
         && user.contactInfo.hasOwnProperty('address')
@@ -27,7 +27,7 @@ Yuck!
 
 With Kasai, that mess becomes this:
 
-```TypeScript
+```javascript
 
 let shippingDestination = (user) => {
     return match(user, [
@@ -45,7 +45,7 @@ Kasai has support for matching any combination of objects, arrays, and primitive
 
 Kasai also allows you to capture values from within a data structure with `$`.
 
-```TypeScript
+```javascript
 let users = [
     { first: 'Thomas', middle: 'Alva', last: 'Edison' },
     { first: 'Nikola', last: 'Tesla' }
