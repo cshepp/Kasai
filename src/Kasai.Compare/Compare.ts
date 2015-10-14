@@ -23,7 +23,7 @@ export var compareArrays = (value: any, pattern: any): MatchResult => {
     var captures = correct.reduce((p, c) => { if (c instanceof Capture) { p.push(c) } return p; }, [])
 
     if (numCorrect === value.length && captures.length > 0) {
-        return new Capture(captures)
+        return new Capture(captures, true)
     }
 
     return numCorrect === value.length
@@ -45,7 +45,7 @@ export var compareObjects = (value: any, pattern: any): MatchResult => {
     var captures = correct.reduce((p, c) => { if (c instanceof Capture) { p.push(c) } return p; }, [])
 
     if (numCorrect === patternKeys.length && captures.length > 0) {
-        return new Capture(captures)
+        return new Capture(captures, true)
     }
 
     return numCorrect === patternKeys.length

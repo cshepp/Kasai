@@ -53,6 +53,16 @@ var CaptureTests = (function (_super) {
             && actual.value[0] === 'test'
             && actual.value[1] === 'test2');
     };
+    CaptureTests.prototype.isMatch_ShouldReturnCapturedValue_WhenCapturingArray = function () {
+        var actual = Compare_1.isMatch({ a: [1, 2, 3] }, { a: Capture_1.$ });
+        this.isTrue(actual instanceof Capture_1.Capture
+            && actual.value[0][0] === 1);
+    };
+    CaptureTests.prototype.isMatch_ShouldReturnCapturedValue_WhenCapturingObject = function () {
+        var actual = Compare_1.isMatch({ a: { b: 1 } }, { a: Capture_1.$ });
+        this.isTrue(actual instanceof Capture_1.Capture
+            && actual.value[0].b === 1);
+    };
     return CaptureTests;
 })(tsUnit.TestClass);
 exports.CaptureTests = CaptureTests;

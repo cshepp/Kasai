@@ -54,4 +54,16 @@ export class CaptureTests extends tsUnit.TestClass {
 			&& actual.value[0] === 'test'
 			&& actual.value[1] === 'test2')
 	}
+	
+	isMatch_ShouldReturnCapturedValue_WhenCapturingArray() {
+		let actual = isMatch({ a: [1, 2, 3] }, { a: $ })
+		this.isTrue(actual instanceof Capture
+			&& actual.value[0][0] === 1)
+	}
+	
+	isMatch_ShouldReturnCapturedValue_WhenCapturingObject() { 
+		let actual = isMatch({ a: { b: 1 } }, { a: $ })
+		this.isTrue(actual instanceof Capture
+			&& actual.value[0].b === 1)
+	}
 }

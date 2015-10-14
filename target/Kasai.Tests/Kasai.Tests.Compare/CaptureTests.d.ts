@@ -8,4 +8,6 @@ export declare class CaptureTests extends tsUnit.TestClass {
     compareObjects_ShouldReturnCapturedValuesInOrder_WhenMoreThanOneCapture(): void;
     compareObjects_ShouldReturnCapturedValue_WhenObjectsAreNested(): void;
     compareObjects_ShouldReturnCapturedValuesInOrder_WhenObjectsAreNested(): void;
+    isMatch_ShouldReturnCapturedValue_WhenCapturingArray(): void;
+    isMatch_ShouldReturnCapturedValue_WhenCapturingObject(): void;
 }

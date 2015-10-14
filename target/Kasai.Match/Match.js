@@ -8,7 +8,6 @@ exports.match = function (value, patterns) {
         if (typeof result !== 'function') {
             r = function (x) { return result; };
         }
-        // if(isMatch(value, guard)) return r(value);
         var matchResult = Compare_1.isMatch(value, guard);
         if (Compare_1.positiveMatch(matchResult)) {
             if (matchResult instanceof Capture_1.Capture) {
