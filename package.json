@@ -24,8 +24,8 @@
     "LICENSE",
     "target/"
   ],
-  "main": "target/index.js",
-  "typings": "target/index",
+  "main": "target/kasai.js",
+  "typings": "target/kasai",
   "devDependencies": {
     "gulp": "3.9.0",
     "gulp-typescript": "2.8.3",
