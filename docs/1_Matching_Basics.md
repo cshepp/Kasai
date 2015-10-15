@@ -78,7 +78,7 @@ let hasMiddleName = match(person, [
 hasMiddleName === true; // True
 ```
 
-# Lambda Expressions
+## Lambda Expressions
 
 Kasai supports lambda expressions in patterns.
 	
