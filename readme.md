@@ -28,7 +28,6 @@ Yuck!
 With Kasai, that mess becomes this:
 
 ```javascript
-
 let shippingDestination = (user) => {
     return match(user, [
         [{ contactInfo: { address: { zip: (z) => z.length === 5 } } }, 'domestic'],
