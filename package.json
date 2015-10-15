@@ -1,7 +1,7 @@
 {
   "name": "kasai",
   "description": "A pattern matching library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Cody Shepp",
     "email": "me@codyshepp.com",
