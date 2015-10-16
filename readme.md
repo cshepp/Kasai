@@ -6,6 +6,12 @@ Pattern matching allows for concise logic based on the value and _shape_ of data
 
 Kasai provides an intuitive interface for pattern matching in TypeScript and JavaScript.
 
+### Importing Kasai (TypeScript)
+```javascript
+/// <reference path="node_modules/kasai/target/types" />
+import kasai = require('kasai');
+```
+
 ### Matching
 
 Pattern matching is really great for inspecting complex data structures with ease.
