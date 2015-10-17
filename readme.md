@@ -8,7 +8,7 @@ Kasai provides an intuitive interface for pattern matching in TypeScript and Jav
 
 ### Importing Kasai (TypeScript)
 ```javascript
-/// <reference path="node_modules/kasai/target/types" />
+/// <reference path='node_modules/kasai/target/types' />
 import kasai = require('kasai');
 ```
 
