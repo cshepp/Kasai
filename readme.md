@@ -68,4 +68,23 @@ let fullNames = users.map(getFullName);
 // >>  ['Thomas Alva Edison', 'Nikola Tesla']
 ```
 
-For more examples, see the `docs` folder.
+### When Conditions
+
+When conditions allow you to augment a pattern by comparing captured values.
+
+```javascript
+let pallet = { items: 100, itemWeight: 1, isHazardous: true }
+
+let isHeavy = (n, w) => n * w > 50;
+
+let rate = match(pallet, [
+    [{ isHazardous: true, items: $, itemWeight: $}, when(isHeavy), 100],
+    [{ isHazardous: false, items: $, itemWeight: $}, when(isHeavy), 75],
+    [{ isHazardous: true }, 90],
+    [_, 50]
+]);
+
+rate === 100 // true
+```
+
+**For more examples, see the `docs` folder.**
