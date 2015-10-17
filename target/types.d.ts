@@ -5,4 +5,5 @@ declare module "kasai" {
 	export var typeOf: (t: string) => (x: any) => boolean;
 	export var instanceOf: (c: any) => (x: any) => boolean;
 	export var $: (x: any) => any;
+	export var when: (f: (...any: any[]) => boolean) => (...any: any[]) => boolean;
 }

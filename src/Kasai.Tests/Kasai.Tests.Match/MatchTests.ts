@@ -3,6 +3,7 @@ import * as tsUnit from '../../../node_modules/tsunit.external/tsUnit'
 import {match} from '../../Kasai.Match/Match'
 import {_} from '../../Kasai.Compare/Helpers'
 import {$} from '../../Kasai.Compare/Capture'
+import {when} from '../../Kasai.Compare/When'
 
 export class MatchTests extends tsUnit.TestClass {
 
@@ -120,7 +121,7 @@ export class MatchTests extends tsUnit.TestClass {
                 }
             },
             t: ['j']
-        };
+        }
 
         var actual = match(x, [
             [{ a: { b: { c: [$, $, $] } }, t: [$] }, (x, y, z, j) => x+y+z+j ],
@@ -128,5 +129,53 @@ export class MatchTests extends tsUnit.TestClass {
         ])
         
         this.areIdentical('xyzj', actual)
+    }
+    
+    match_ShouldWork_WithPositiveWhenCondition() { 
+        
+        var x = 1
+        
+        var actual = match(x, [
+            [1, when(() => true), 'one'],
+            [_, 'two']
+        ])
+        
+        this.areIdentical('one', actual)
+    }
+    
+    match_ShouldWork_WithNegativeWhenCondition() { 
+        
+        var x = 1
+        
+        var actual = match(x, [
+            [1, when(() => false), 'one'],
+            [_, 'two']
+        ])
+        
+        this.areIdentical('two', actual)
+    }
+    
+    match_ShouldWork_WithWhenConditionAndCapture() { 
+        
+        var x = { a: 1, b: 2 }
+        
+        var actual = match(x, [
+            [{ a: $, b: $ }, when((a, b) => a < b), 'one'],
+            [_, 'two']
+        ])
+        
+        this.areIdentical('one', actual)
+    }
+    
+    match_ShouldWork_WithNegativeWhenConditionAndCapture() { 
+        
+        var x = { a: 1, b: 2 }
+        
+        var actual = match(x, [
+            [{ a: $ }, when((a) => a === 3), 'one'],
+            [{ a: $ }, when((a) => a === 1), 'two']
+        ])
+        
+        this.areIdentical('two', actual)
     }
 }

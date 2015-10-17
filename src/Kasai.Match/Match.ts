@@ -6,8 +6,14 @@ export var match = (value: any, patterns: any[]): any => {
 
     for (var i = 0; i < patterns.length; i++) {
         var pattern = patterns[i]
-        var [guard, result] = pattern
-
+        
+        var [guard, when, result] = pattern
+        
+        if (result === undefined) { 
+            result = when
+            when = () => true
+        }
+        
         var r = result
         if(typeof result !== 'function'){
             r = (x) => result
@@ -16,12 +22,14 @@ export var match = (value: any, patterns: any[]): any => {
         var matchResult: MatchResult = isMatch(value, guard);
 
         if (positiveMatch(matchResult)) {
-            if (matchResult instanceof Capture) {
-
-                return r.apply(null, matchResult.value)
+            
+            let v = matchResult instanceof Capture
+                ? matchResult.value
+                : [value];
+            
+            if (when.apply(null, v)){ 
+                return r.apply(null, v);
             }
-
-            return r(value)
         }
     }
 }

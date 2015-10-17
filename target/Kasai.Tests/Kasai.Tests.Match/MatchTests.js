@@ -8,6 +8,7 @@ var tsUnit = require('../../../node_modules/tsunit.external/tsUnit');
 var Match_1 = require('../../Kasai.Match/Match');
 var Helpers_1 = require('../../Kasai.Compare/Helpers');
 var Capture_1 = require('../../Kasai.Compare/Capture');
+var When_1 = require('../../Kasai.Compare/When');
 var MatchTests = (function (_super) {
     __extends(MatchTests, _super);
     function MatchTests() {
@@ -107,6 +108,38 @@ var MatchTests = (function (_super) {
             [Helpers_1._, 'bad']
         ]);
         this.areIdentical('xyzj', actual);
+    };
+    MatchTests.prototype.match_ShouldWork_WithPositiveWhenCondition = function () {
+        var x = 1;
+        var actual = Match_1.match(x, [
+            [1, When_1.when(function () { return true; }), 'one'],
+            [Helpers_1._, 'two']
+        ]);
+        this.areIdentical('one', actual);
+    };
+    MatchTests.prototype.match_ShouldWork_WithNegativeWhenCondition = function () {
+        var x = 1;
+        var actual = Match_1.match(x, [
+            [1, When_1.when(function () { return false; }), 'one'],
+            [Helpers_1._, 'two']
+        ]);
+        this.areIdentical('two', actual);
+    };
+    MatchTests.prototype.match_ShouldWork_WithWhenConditionAndCapture = function () {
+        var x = { a: 1, b: 2 };
+        var actual = Match_1.match(x, [
+            [{ a: Capture_1.$, b: Capture_1.$ }, When_1.when(function (a, b) { return a < b; }), 'one'],
+            [Helpers_1._, 'two']
+        ]);
+        this.areIdentical('one', actual);
+    };
+    MatchTests.prototype.match_ShouldWork_WithNegativeWhenConditionAndCapture = function () {
+        var x = { a: 1, b: 2 };
+        var actual = Match_1.match(x, [
+            [{ a: Capture_1.$ }, When_1.when(function (a) { return a === 3; }), 'one'],
+            [{ a: Capture_1.$ }, When_1.when(function (a) { return a === 1; }), 'two']
+        ]);
+        this.areIdentical('two', actual);
     };
     return MatchTests;
 })(tsUnit.TestClass);

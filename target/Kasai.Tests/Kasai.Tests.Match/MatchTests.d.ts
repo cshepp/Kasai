@@ -12,4 +12,8 @@ export declare class MatchTests extends tsUnit.TestClass {
     match_ShouldApplyCapturedValues_InArrays(): void;
     match_ShouldApplyCapturedValues_InObjects(): void;
     match_ShouldWork_InComplexNestedStructures(): void;
+    match_ShouldWork_WithPositiveWhenCondition(): void;
+    match_ShouldWork_WithNegativeWhenCondition(): void;
+    match_ShouldWork_WithWhenConditionAndCapture(): void;
+    match_ShouldWork_WithNegativeWhenConditionAndCapture(): void;
 }

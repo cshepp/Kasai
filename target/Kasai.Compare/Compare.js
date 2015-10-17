@@ -13,7 +13,6 @@ exports.compareArrays = function (value, pattern) {
         p.push(c);
     } return p; }, []);
     if (numCorrect === value.length && captures.length > 0) {
-        //return new Capture(captures)
         return new Capture_1.Capture(captures, true);
     }
     return numCorrect === value.length;
@@ -32,7 +31,6 @@ exports.compareObjects = function (value, pattern) {
         p.push(c);
     } return p; }, []);
     if (numCorrect === patternKeys.length && captures.length > 0) {
-        //return new Capture(captures)
         return new Capture_1.Capture(captures, true);
     }
     return numCorrect === patternKeys.length;
